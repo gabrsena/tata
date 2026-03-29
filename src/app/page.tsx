@@ -20,9 +20,8 @@ export default function Home() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const gardenVideoRef = useRef<HTMLVideoElement>(null);
-  const footerVideoRef = useRef<HTMLVideoElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Inicializar áudio
@@ -99,23 +98,6 @@ export default function Home() {
           },
           start: 'top 85%',
         });
-
-        // Lazy load background videos
-        if (gardenVideoRef.current) {
-          ScrollTrigger.create({
-            trigger: gardenVideoRef.current,
-            start: 'top bottom',
-            onEnter: () => gardenVideoRef.current?.play(),
-          });
-        }
-
-        if (footerVideoRef.current) {
-          ScrollTrigger.create({
-            trigger: footerVideoRef.current,
-            start: 'top bottom',
-            onEnter: () => footerVideoRef.current?.play(),
-          });
-        }
       });
       return () => ctx.revert();
     }, 100);
@@ -145,19 +127,9 @@ export default function Home() {
         </Hero>
 
         <section id="sobre" className={styles.sobreSection}>
-          {/* Background garden video */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
-            <video
-              ref={gardenVideoRef}
-              muted loop playsInline
-              preload="none"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
-            >
-              <source src="/garden.webm" type="video/webm" />
-              <source src="/garden.mov" type="video/quicktime" />
-              <source src="/garden.mov" type="video/mp4" />
-            </video>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #E8E2D4 0%, transparent 30%, transparent 70%, #E8E2D4 100%)' }} />
+          {/* Background atmosphere */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', background: '#E8E2D4' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(215, 198, 168, 0.2) 50%, transparent 100%)' }} />
             <div className={styles.grainOverlay} />
           </div>
 
@@ -218,21 +190,9 @@ export default function Home() {
 
         <MissionsSection />
 
-        <footer className={styles.footer}>
+        <footer className={styles.footer} ref={footerRef}>
           <div className={styles.footerVideoContainer}>
-            <video 
-              ref={footerVideoRef}
-              muted 
-              loop 
-              playsInline 
-              preload="none"
-              className={styles.footerVideo}
-            >
-              <source src="/cloud.webm" type="video/webm" />
-              <source src="/cloud.mov" type="video/quicktime" />
-              <source src="/cloud.mov" type="video/mp4" />
-            </video>
-            <div className={styles.footerOverlay} />
+            <div className={styles.footerOverlay} style={{ background: 'linear-gradient(to bottom, #E8E2D4, #D7C6A8)' }} />
           </div>
           <div className={`${styles.footerContent} reveal`}>
             <p>&copy; {new Date().getFullYear()} Tata. stick to the plan.</p>
