@@ -190,10 +190,7 @@ export default function Home() {
 
         <MissionsSection />
 
-        <footer className={styles.footer} ref={footerRef}>
-          <div className={styles.footerVideoContainer}>
-            <div className={styles.footerOverlay} style={{ background: 'linear-gradient(to bottom, #E8E2D4, #D7C6A8)' }} />
-          </div>
+        <footer className={styles.footer} ref={footerRef} style={{ background: '#E8E2D4' }}>
           <div className={`${styles.footerContent} reveal`}>
             <p>&copy; {new Date().getFullYear()} Tata. stick to the plan.</p>
           </div>

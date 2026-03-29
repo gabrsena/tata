@@ -1,23 +1,56 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import CountdownTimer from './CountdownTimer';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function MissionsSection() {
   const targetDate = "2026-04-28T00:00:00"; 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Lazy load and play video when in view
+      if (videoRef.current) {
+        ScrollTrigger.create({
+          trigger: videoRef.current,
+          start: 'top bottom',
+          onEnter: () => videoRef.current?.play(),
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="missao-v4" className="relative min-h-screen flex items-center py-24 sm:py-32 overflow-hidden bg-[#0A0A0A]">
-      {/* Background Atmosphere */}
+    <section id="missao-v4" className="relative min-h-screen flex items-center py-24 sm:py-32 overflow-hidden bg-black">
+      {/* Background Video with Cinematic Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#111111] via-black to-[#0A0A0A]" />
+        <video 
+          ref={videoRef}
+          muted 
+          loop 
+          playsInline 
+          preload="none"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
+        >
+          <source src="/beckground missao.mp4" type="video/mp4" />
+        </video>
         {/* Cinematic Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-black/40 z-1" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-1" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 z-1" />
       </div>
 
       {/* Decorative SVG Map (Overlayed) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden text-[#C9A96E] z-1">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden text-[#C9A96E] z-10">
         <svg 
           viewBox="0 0 800 800" 
           className="absolute right-[-150px] top-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-auto opacity-[0.2]"
@@ -46,7 +79,7 @@ export default function MissionsSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center reveal">
+      <div className="relative z-20 container mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center reveal">
         {/* Left Column: Narrative */}
         <div className="flex flex-col pt-8 lg:pt-0">
           <div className="flex items-center gap-4 mb-6 sm:mb-8">

@@ -48,26 +48,16 @@ export default function Hero({ children }: HeroProps) {
           width={1920}
           height={1080}
           className={styles.video}
+          style={{ objectFit: 'cover' }}
         >
           <source src="/background.webm" type="video/webm" />
+          <source src="/background.mp4" type="video/mp4" />
           <source src="/background.mov" type="video/quicktime" />
-          <source src="/background.mov" type="video/mp4" />
         </video>
         
-        {/* Camada de Partículas Overlay */}
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          poster="/hero.webp"
-          width={1920}
-          height={1080}
-          className={styles.particles}
-        >
-          <source src="/particles.mp4" type="video/mp4" />
-        </video>
-        
+        {/* Cinematic Overlays for Depth and Legibility */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-10" />
         <div className={styles.vignette} />
       </div>
 
