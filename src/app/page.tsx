@@ -194,15 +194,14 @@ export default function Home() {
           <div className={`${styles.footerContent} reveal`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
             <h2 style={{ 
               fontFamily: 'var(--font-bebas)', 
-              fontSize: 'clamp(3rem, 15vw, 8rem)', 
+              fontSize: '1.5rem', 
               color: '#333', 
-              letterSpacing: '0.1em',
-              lineHeight: '0.9',
+              letterSpacing: '0.2em',
               textAlign: 'center',
-              opacity: 0.9,
+              opacity: 0.7,
               textTransform: 'uppercase'
             }}>
-              stick to<br/>the plan
+              stick to the plan
             </h2>
             <div style={{ width: '40px', height: '1px', background: 'rgba(0,0,0,0.2)' }} />
             <p style={{ color: '#666', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
