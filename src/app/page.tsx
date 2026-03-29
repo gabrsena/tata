@@ -83,23 +83,19 @@ export default function Home() {
     // Pequeno delay para garantir que o DOM renderizou
     const timeout = setTimeout(() => {
       const ctx = gsap.context(() => {
-        const revealElements = document.querySelectorAll('.reveal');
-        revealElements.forEach((el) => {
-          gsap.fromTo(el,
-            { opacity: 0, y: 50, visibility: 'hidden' },
-            {
+        ScrollTrigger.batch('.reveal', {
+          onEnter: (batch) => {
+            gsap.to(batch, {
               opacity: 1,
               y: 0,
               visibility: 'visible',
               duration: 1.2,
+              stagger: 0.15,
               ease: 'power3.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
-              }
-            }
-          );
+              overwrite: true
+            });
+          },
+          start: 'top 85%',
         });
       });
       return () => ctx.revert();

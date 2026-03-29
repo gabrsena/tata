@@ -110,7 +110,7 @@ body {
 /* --- Reveal Animation Utility --- */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(50px);
   visibility: hidden;
   will-change: transform, opacity;
 }

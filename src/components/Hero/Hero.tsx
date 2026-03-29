@@ -44,7 +44,7 @@ export default function Hero({ children }: HeroProps) {
           muted 
           loop 
           playsInline 
-          poster="/hero.jpg"
+          poster="/hero.webp"
           className={styles.video}
         >
           <source src="/background.webm" type="video/webm" />
@@ -58,7 +58,7 @@ export default function Hero({ children }: HeroProps) {
           muted 
           loop 
           playsInline 
-          poster="/hero.jpg"
+          poster="/hero.webp"
           className={styles.particles}
         >
           <source src="/particles.mp4" type="video/mp4" />
