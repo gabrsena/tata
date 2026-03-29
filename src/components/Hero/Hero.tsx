@@ -25,8 +25,8 @@ export default function Hero({ children }: HeroProps) {
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0 }
       )
-      // 2. Background Video Fades in
-      .to(videoLayerRef.current, { opacity: 1, duration: 2 }, '-=0.5')
+      // 2. Background Video Layers Fade in to full vibrancy
+      .to(videoLayerRef.current, { opacity: 1, duration: 1 })
       // 3. Actions (buttons) slide up and fade in
       .fromTo(actionsRef.current,
         { opacity: 0, y: 20 },
@@ -38,12 +38,13 @@ export default function Hero({ children }: HeroProps) {
 
   return (
     <header id="home" className={styles.hero}>
-      <div className={styles.background} ref={videoLayerRef} style={{ opacity: 0 }}>
+      <div className={styles.background} ref={videoLayerRef} style={{ opacity: 1 }}>
         <video 
           autoPlay 
           muted 
           loop 
           playsInline 
+          poster="/hero.jpg"
           className={styles.video}
         >
           <source src="/background.webm" type="video/webm" />
@@ -57,6 +58,7 @@ export default function Hero({ children }: HeroProps) {
           muted 
           loop 
           playsInline 
+          poster="/hero.jpg"
           className={styles.particles}
         >
           <source src="/particles.mp4" type="video/mp4" />

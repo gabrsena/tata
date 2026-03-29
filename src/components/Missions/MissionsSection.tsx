@@ -15,7 +15,7 @@ export default function MissionsSection() {
           muted 
           loop 
           playsInline 
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
           <source src="/nordeste.webm" type="video/webm" />
@@ -27,7 +27,7 @@ export default function MissionsSection() {
           muted 
           loop 
           playsInline 
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
         >
           <source src="/br.webm" type="video/webm" />

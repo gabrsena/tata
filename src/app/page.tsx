@@ -134,6 +134,7 @@ export default function Home() {
           <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
             <video
               autoPlay muted loop playsInline
+              preload="none"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
             >
               <source src="/garden.webm" type="video/webm" />
@@ -178,6 +179,7 @@ export default function Home() {
                   <video
                     ref={videoRef}
                     playsInline
+                    preload="none"
                     className={styles.sobreVideo}
                     onPlay={() => { setVideoPlaying(true); fadeAudio(0.05); }}
                     onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
