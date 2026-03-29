@@ -25,6 +25,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+  width: 0;
+  height: 0;
 }
 
 html {
@@ -99,23 +107,11 @@ body {
 }
 
 
-/* --- Premium Scrollbar --- */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1A1208; /* Dark track to contrast with everything */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #E8E2D4; /* Cream thumb */
-  border-radius: 5px;
-  border: 2px solid #1A1208;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #C9A96E; /* Gold on hover */
+/* --- Reveal Animation Utility --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  visibility: hidden;
 }
 
 /* --- Neon Glow Utility --- */

@@ -16,10 +16,10 @@
 }
 
 .scrolled {
-  background: rgba(242, 232, 217, 0.85); /* Slightly clearer cream */
-  backdrop-filter: blur(20px);
+  background: rgba(232, 226, 212, 0.5); /* Higher translucency */
+  backdrop-filter: blur(25px); /* Increased blur for glass effect */
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(26, 18, 8, 0.05);
+  border-bottom: 1px solid rgba(26, 18, 8, 0.08);
 }
 
 .container {

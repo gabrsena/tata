@@ -19,9 +19,19 @@ export default function MissionsSection() {
         >
           <source src="/nordeste.mp4" type="video/mp4" />
         </video>
+        {/* Adiciona o vídeo br como overlay */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
+        >
+          <source src="/br.mp4" type="video/mp4" />
+        </video>
         {/* Cinematic Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
       </div>
 
       {/* Decorative SVG Map (Overlayed) */}
@@ -54,7 +64,7 @@ export default function MissionsSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center">
+      <div className="relative z-10 container mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center reveal">
         {/* Left Column: Narrative */}
         <div className="flex flex-col pt-8 lg:pt-0">
           <div className="flex items-center gap-4 mb-6 sm:mb-8">
@@ -111,19 +121,19 @@ export default function MissionsSection() {
               href="https://wa.me/5515998618920" 
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center gap-6 py-4 sm:py-5 px-8 sm:px-10 overflow-hidden transition-all duration-500 rounded-full w-full sm:w-auto"
+              className="group relative flex items-center justify-center gap-8 py-6 sm:py-7 px-12 sm:px-14 overflow-hidden transition-all duration-500 rounded-full w-full sm:w-auto shadow-[0_0_20px_rgba(201,169,110,0.15)]"
             >
               {/* Premium Button Background & Effects */}
-              <div className="absolute inset-0 bg-[#C9A96E]/10 backdrop-blur-md border border-[#C9A96E]/40 group-hover:border-[#C9A96E] transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-[#C9A96E]/15 backdrop-blur-md border border-[#C9A96E]/50 group-hover:border-[#C9A96E] transition-colors duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               
-              <span className="relative z-10 text-[#C9A96E] group-hover:text-white font-serif text-lg sm:text-xl tracking-wide transition-colors duration-500">
+              <span className="relative z-10 text-[#C9A96E] group-hover:text-white font-serif text-xl sm:text-2xl tracking-widest transition-colors duration-500">
                 APOIAR ESSA MISSÃO
               </span>
-              <FaArrowRight className="relative z-10 text-[#C9A96E] group-hover:text-white group-hover:translate-x-3 transition-all duration-500" />
+              <FaArrowRight className="relative z-10 text-[#C9A96E] group-hover:text-white group-hover:translate-x-4 transition-all duration-500 text-2xl" />
               
               {/* Pulsing Glow */}
-              <div className="absolute inset-0 shadow-[0_0_20px_rgba(201,169,110,0.2)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 shadow-[0_0_30px_rgba(201,169,110,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
           </div>
         </div>

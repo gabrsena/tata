@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import PetalEffect from '@/components/Effects/PetalEffect';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -11,30 +10,36 @@ interface HeroProps {
 }
 
 export default function Hero({ children }: HeroProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const videoLayerRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initial content reveal (triggered by parent after intro)
     if (typeof window !== 'undefined') {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+      const tl = gsap.timeline({ 
+        defaults: { ease: 'power3.out', duration: 1.5 } 
+      });
 
-      tl.fromTo(titleRef.current, 
-        { opacity: 0, scale: 0.95 }, 
-        { opacity: 1, scale: 1, delay: 0.2 }
-      )
+      // 1. Video Fades in
+      tl.to(videoLayerRef.current, { opacity: 1, duration: 2 })
+      // 2. Phrase slides up and fades in
       .fromTo(subtitleRef.current,
-        { opacity: 0, y: 15 },
+        { opacity: 0, y: 30 },
         { opacity: 1, y: 0 },
         '-=1.0'
+      )
+      // 3. Actions (buttons) slide up and fade in
+      .fromTo(actionsRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0 },
+        '-=0.8'
       );
     }
   }, []);
 
   return (
-    <header id="home" className={styles.hero} ref={containerRef}>
-      <div className={styles.background}>
+    <header id="home" className={styles.hero}>
+      <div className={styles.background} ref={videoLayerRef} style={{ opacity: 0 }}>
         <video 
           autoPlay 
           muted 
@@ -58,15 +63,14 @@ export default function Hero({ children }: HeroProps) {
         </video>
         
         <div className={styles.vignette} />
-        <PetalEffect />
       </div>
 
       <div className={styles.content}>
-        <p ref={subtitleRef} className={styles.subtitle}>
+        <p ref={subtitleRef} className={styles.subtitle} style={{ opacity: 0 }}>
           Criando com intencionalidade e propósito.<br/>
           Tudo para a honra e glória de Deus.
         </p>
-        <div className={styles.actions}>
+        <div ref={actionsRef} className={styles.actions} style={{ opacity: 0 }}>
           {children}
         </div>
       </div>

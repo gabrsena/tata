@@ -211,3 +211,158 @@
     gap: 4rem;
   }
 }
+
+/* --- New Responsive Sobre Section Classes --- */
+.sobreSection {
+  position: relative;
+  width: 100%;
+  background-color: #E8E2D4;
+  padding: 80px 48px;
+  overflow: hidden;
+}
+
+.sobreContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.sobreEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.sobreEyebrowLabel {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B8B8B; /* Darker for better contrast */
+}
+
+.sobreEyebrowLine {
+  flex: 1;
+  height: 1px;
+  background-color: #D6D3D1;
+}
+
+.sobreGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.sobreTextColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.sobreTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.15;
+  color: #1C1917;
+  margin-bottom: 32px;
+}
+
+.sobreParagraph {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.85;
+  color: #57534E; /* Darker for better contrast */
+  margin-bottom: 24px;
+}
+
+.sobreVerse {
+  border-left: 2px solid #CA8A04;
+  padding-left: 24px;
+  margin: 12px 0 0 0;
+}
+
+.sobreVerseText {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #44403C; /* High contrast for verse */
+}
+
+.sobreVideoColumn {
+  position: relative;
+  width: 100%;
+}
+
+.sobreVideoDecor {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #CA8A04;
+  z-index: 0;
+}
+
+.sobreVideoWrapper {
+  position: relative;
+  z-index: 10;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background-color: #f0ebe0;
+  cursor: pointer;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.sobreVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Specific Play Overlay fix for these classes */
+.sobrePlayOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(232, 226, 212, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  color: #2d2d2d;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .sobreSection {
+    padding: 60px 24px;
+  }
+  
+  .sobreGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .sobreTitle {
+    font-size: 36px;
+  }
+  
+  .sobreVideoWrapper {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}

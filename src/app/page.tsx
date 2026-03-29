@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
-import Section from '@/components/Section/Section';
 import Intro from '@/components/Intro/Intro';
 import AudioControl from '@/components/AudioControl/AudioControl';
 import MissionsSection from '@/components/Missions/MissionsSection';
@@ -74,6 +73,42 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    if (introComplete) {
+      // Pequeno delay para garantir que o DOM renderizou após o Intro sumir
+      const timeout = setTimeout(() => {
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        revealElements.forEach((el) => {
+          gsap.fromTo(el,
+            { 
+              opacity: 0, 
+              y: 50,
+              visibility: 'hidden'
+            },
+            {
+              opacity: 1,
+              y: 0,
+              visibility: 'visible',
+              duration: 1.2,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              }
+            }
+          );
+        });
+      }, 100);
+
+      return () => {
+        clearTimeout(timeout);
+        ScrollTrigger.getAll().forEach(t => t.kill());
+      };
+    }
+  }, [introComplete]);
+
   return (
     <main className={styles.main}>
       {!introComplete && <Intro onComplete={handleIntroComplete} />}
@@ -94,72 +129,64 @@ export default function Home() {
             <SocialLinks />
           </Hero>
 
-          <section id="sobre" className="w-full bg-[#E8E2D4] py-[60px] px-[48px] relative overflow-hidden">
-            {/* Background Grain Overlay from previous version */}
-            <div className={styles.grainOverlay} />
-            
-            <div className="max-w-[900px] mx-auto relative z-10">
+          <section id="sobre" className={styles.sobreSection}>
+            {/* Background garden video */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+              <video
+                autoPlay muted loop playsInline
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
+              >
+                <source src="/garden.mov" type="video/quicktime" />
+                <source src="/garden.mov" type="video/mp4" />
+              </video>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #E8E2D4 0%, transparent 30%, transparent 70%, #E8E2D4 100%)' }} />
+              <div className={styles.grainOverlay} />
+            </div>
+
+            <div className={`${styles.sobreContainer} reveal`}>
               {/* Eyebrow */}
-              <div className="flex items-center gap-4 mb-12">
-                <span className="text-xs tracking-[0.2em] uppercase text-stone-400 font-sans">Sobre Mim</span>
-                <div className="flex-1 h-px bg-stone-300" />
+              <div className={styles.sobreEyebrow}>
+                <span className={styles.sobreEyebrowLabel}>Sobre Mim</span>
+                <div className={styles.sobreEyebrowLine} />
               </div>
 
-              {/* Main Content Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[64px] items-start">
-                {/* Left Column - Text */}
-                <div className="flex flex-col">
-                  <h2 className="font-serif text-5xl font-normal italic leading-tight text-stone-900 mb-8">
+              {/* Grid */}
+              <div className={styles.sobreGrid}>
+                {/* Texto */}
+                <div className={styles.sobreTextColumn}>
+                  <h2 className={styles.sobreTitle}>
                     Apaixonada por Jesus.
                   </h2>
-                  <div className="space-y-5">
-                    <p className="font-sans text-sm leading-relaxed text-stone-500">
-                      Oi, eu sou a Tata. Tenho 28 anos e, acima de tudo, sou apaixonada por Jesus.
+                  <p className={styles.sobreParagraph}>
+                    Oi, eu sou a Tata. Tenho 28 anos e, acima de tudo, sou apaixonada por Jesus.
+                  </p>
+                  <p className={styles.sobreParagraph}>
+                    Atualmente, vivo missões em tempo integral pela Dunamis School of Ministry, mas o meu coração não sossega aqui. Por isso te convido a acompanhar o início dessa minha jornada como missionária e também fazer parte dela.
+                  </p>
+                  <blockquote className={styles.sobreVerse}>
+                    <p className={styles.sobreVerseText}>
+                      "Mas recebereis poder ao descer sobre vós o Espírito Santo; e ser-me-eis testemunhas tanto em Jerusalém como em toda a Judéia e Samaria e até aos confins da terra." Atos 1:8
                     </p>
-                    <p className="font-sans text-sm leading-relaxed text-stone-500">
-                      Atualmente, vivo missões em tempo integral pela Dunamis School of Ministry, mas o meu coração não sossega aqui. Por isso te convido a acompanhar o inicio dessa minha jornada como missionaria e tambem fazer parte dela.
-                    </p>
-                    <blockquote className="border-l-2 border-yellow-600 pl-5 mt-0">
-                      <p className="font-serif italic text-sm leading-relaxed text-stone-400">
-                        "Curtindo, comentando, compartilhando — mas principalmente orando por mim. Deus te abençoe."
-                      </p>
-                    </blockquote>
-                  </div>
+                  </blockquote>
                 </div>
 
-                {/* Right Column - Video */}
-                <div className="relative">
-                  {/* Decorative Golden Border Square */}
-                  <div className="absolute bottom-[-16px] right-[-16px] w-20 h-20 border border-yellow-600 rounded-none z-0" />
-                  
-                  {/* Video Wrapper */}
-                  <div 
-                    className="relative z-10 rounded-sm overflow-hidden aspect-[4/5] bg-[#f0ebe0] cursor-pointer shadow-xl"
-                    onClick={toggleVideo}
-                  >
-                    <video 
+                {/* Vídeo */}
+                <div className={styles.sobreVideoColumn}>
+                  <div className={styles.sobreVideoDecor} />
+                  <div className={styles.sobreVideoWrapper} onClick={toggleVideo}>
+                    <video
                       ref={videoRef}
-                      playsInline 
-                      className="w-full h-full object-cover block"
-                      onPlay={() => {
-                        setVideoPlaying(true);
-                        fadeAudio(0.05);
-                      }}
-                      onPause={() => {
-                        setVideoPlaying(false);
-                        fadeAudio(0.4);
-                      }}
-                      onEnded={() => {
-                        setVideoPlaying(false);
-                        fadeAudio(0.4);
-                      }}
+                      playsInline
+                      className={styles.sobreVideo}
+                      onPlay={() => { setVideoPlaying(true); fadeAudio(0.05); }}
+                      onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
+                      onEnded={() => { setVideoPlaying(false); fadeAudio(0.4); }}
                     >
                       <source src="/sobre.MOV" type="video/quicktime" />
                       <source src="/sobre.MOV" type="video/mp4" />
                     </video>
-                    
                     {!videoPlaying && (
-                      <div className={styles.playOverlay}>
+                      <div className={styles.sobrePlayOverlay}>
                         <FaPlay size={30} />
                       </div>
                     )}
@@ -187,7 +214,7 @@ export default function Home() {
               </video>
               <div className={styles.footerOverlay} />
             </div>
-            <div className={styles.footerContent}>
+            <div className={`${styles.footerContent} reveal`}>
               <p>&copy; {new Date().getFullYear()} Tata. stick to the plan.</p>
             </div>
           </footer>
