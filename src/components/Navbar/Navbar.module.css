@@ -163,10 +163,31 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border-bottom: none !important;
+    padding: 1.5rem 0;
+  }
+
   .desktopLinks {
     display: none;
   }
+  
   .menuButton {
     display: block;
+    padding: 0.5rem;
+    border-radius: 50%;
+    /* Optional: add a very subtle background to the button itself if needed for contrast */
+    /* background: rgba(0, 0, 0, 0.05); */
+  }
+
+  .transparent .menuButton {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  .scrolled .menuButton {
+    color: #1A1208;
   }
 }
