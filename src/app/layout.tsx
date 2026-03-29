@@ -21,9 +21,20 @@ const inconsolata = Inconsolata({ variable: "--font-inconsolata", subsets: ["lat
 
 export const metadata: Metadata = {
   title: "stick to the plan.",
-  description: "Explore, Conecte e Apoie a nossa Jornada.",
+  description: "Explore, Conecte e Apoie a nossa Missão.",
   icons: {
     icon: '/cloud.png',
+  },
+  openGraph: {
+    title: "stick to the plan.",
+    description: "Explore, Conecte e Apoie a nossa Missão.",
+    images: [{ url: '/cloud.png' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "stick to the plan.",
+    description: "Explore, Conecte e Apoie a nossa Missão.",
+    images: ['/cloud.png'],
   },
 };
 
