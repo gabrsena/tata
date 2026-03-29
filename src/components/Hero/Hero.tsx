@@ -50,7 +50,6 @@ export default function Hero({ children }: HeroProps) {
           className={styles.video}
           style={{ objectFit: 'cover' }}
         >
-          <source src="/background.webm" type="video/webm" />
           <source src="/background.mp4" type="video/mp4" />
           <source src="/background.mov" type="video/quicktime" />
         </video>
