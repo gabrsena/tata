@@ -1,21 +1,52 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import CountdownTimer from './CountdownTimer';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function MissionsSection() {
   const targetDate = "2026-04-28T00:00:00"; 
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Lazy load and play videos when in view
+      if (video1Ref.current) {
+        ScrollTrigger.create({
+          trigger: video1Ref.current,
+          start: 'top bottom',
+          onEnter: () => video1Ref.current?.play(),
+        });
+      }
+      if (video2Ref.current) {
+        ScrollTrigger.create({
+          trigger: video2Ref.current,
+          start: 'top bottom',
+          onEnter: () => video2Ref.current?.play(),
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section id="missao-v4" className="relative min-h-screen flex items-center py-24 sm:py-32 overflow-hidden bg-black">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video 
-          autoPlay 
+          ref={video1Ref}
           muted 
           loop 
           playsInline 
           preload="none"
+          width={1920}
+          height={1080}
           className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
           <source src="/nordeste.webm" type="video/webm" />
@@ -23,11 +54,13 @@ export default function MissionsSection() {
         </video>
         {/* Adiciona o vídeo br como overlay */}
         <video 
-          autoPlay 
+          ref={video2Ref}
           muted 
           loop 
           playsInline 
           preload="none"
+          width={1920}
+          height={1080}
           className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
         >
           <source src="/br.webm" type="video/webm" />
@@ -107,6 +140,8 @@ export default function MissionsSection() {
               <img 
                 src="/missoes.jpg" 
                 alt="Equipe de Missionárias Tata" 
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>

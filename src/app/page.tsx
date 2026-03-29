@@ -20,6 +20,8 @@ export default function Home() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const gardenVideoRef = useRef<HTMLVideoElement>(null);
+  const footerVideoRef = useRef<HTMLVideoElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -97,6 +99,23 @@ export default function Home() {
           },
           start: 'top 85%',
         });
+
+        // Lazy load background videos
+        if (gardenVideoRef.current) {
+          ScrollTrigger.create({
+            trigger: gardenVideoRef.current,
+            start: 'top bottom',
+            onEnter: () => gardenVideoRef.current?.play(),
+          });
+        }
+
+        if (footerVideoRef.current) {
+          ScrollTrigger.create({
+            trigger: footerVideoRef.current,
+            start: 'top bottom',
+            onEnter: () => footerVideoRef.current?.play(),
+          });
+        }
       });
       return () => ctx.revert();
     }, 100);
@@ -129,7 +148,8 @@ export default function Home() {
           {/* Background garden video */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
             <video
-              autoPlay muted loop playsInline
+              ref={gardenVideoRef}
+              muted loop playsInline
               preload="none"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
             >
@@ -201,7 +221,7 @@ export default function Home() {
         <footer className={styles.footer}>
           <div className={styles.footerVideoContainer}>
             <video 
-              autoPlay 
+              ref={footerVideoRef}
               muted 
               loop 
               playsInline 

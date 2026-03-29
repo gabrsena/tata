@@ -45,6 +45,8 @@ export default function Hero({ children }: HeroProps) {
           loop 
           playsInline 
           poster="/hero.webp"
+          width={1920}
+          height={1080}
           className={styles.video}
         >
           <source src="/background.webm" type="video/webm" />
@@ -59,6 +61,8 @@ export default function Hero({ children }: HeroProps) {
           loop 
           playsInline 
           poster="/hero.webp"
+          width={1920}
+          height={1080}
           className={styles.particles}
         >
           <source src="/particles.mp4" type="video/mp4" />
