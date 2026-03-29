@@ -20,19 +20,19 @@ export default function Hero({ children }: HeroProps) {
         defaults: { ease: 'power3.out', duration: 1.5 } 
       });
 
-      // 1. Video Fades in
-      tl.to(videoLayerRef.current, { opacity: 1, duration: 2 })
-      // 2. Phrase slides up and fades in
-      .fromTo(subtitleRef.current,
+      // 1. Phrase slides up and fades in (first element to appear)
+      tl.fromTo(subtitleRef.current,
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0 },
-        '-=1.0'
+        '+=0.3' // Small pause after intro fade
       )
+      // 2. Background Video Fades in
+      .to(videoLayerRef.current, { opacity: 1, duration: 2 }, '-=0.5')
       // 3. Actions (buttons) slide up and fade in
       .fromTo(actionsRef.current,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0 },
-        '-=0.8'
+        '-=1.2'
       );
     }
   }, []);

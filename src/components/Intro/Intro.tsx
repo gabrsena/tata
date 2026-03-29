@@ -36,20 +36,13 @@ export default function Intro({ onComplete }: { onComplete: () => void }) {
       }
     });
 
-    // 1. Font switching 10x in 1s
+    // Font switching: 10 fonts in 1s total
     fonts.forEach((font, i) => {
       tl.to(textRef.current, {
         fontFamily: font,
-        duration: 0.1, // 10 fonts * 0.1s = 1s
+        duration: 0.1,
         ease: 'none'
       });
-    });
-
-    // 2. Stay in Crimson Pro (Serif) for 1s
-    tl.to(textRef.current, {
-      fontFamily: 'var(--font-crimson)',
-      duration: 1,
-      ease: 'none'
     });
 
   }, [onComplete]);
