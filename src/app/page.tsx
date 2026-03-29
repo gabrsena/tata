@@ -18,6 +18,7 @@ export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
@@ -34,6 +35,16 @@ export default function Home() {
         audioRef.current = null;
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Definimos visibilidade do controle de áudio apenas enquanto for o Hero (através do window.scrollY)
+      setIsHeroVisible(window.scrollY < 400); 
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleIntroComplete = () => {
@@ -116,7 +127,11 @@ export default function Home() {
       {introComplete && (
         <div className="fade-in">
           <Navbar />
-          <AudioControl isPlaying={isAudioPlaying} onToggle={toggleAudio} />
+          <AudioControl 
+            isPlaying={isAudioPlaying} 
+            onToggle={toggleAudio} 
+            isVisible={isHeroVisible}
+          />
           
           {/* Cloud Effects Background */}
           <div className="clouds-container">
@@ -205,7 +220,7 @@ export default function Home() {
                 muted 
                 loop 
                 playsInline 
-                preload="auto"
+                preload="none"
                 className={styles.footerVideo}
               >
                 <source src="/cloud.mov" type="video/quicktime" />

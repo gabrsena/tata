@@ -15,6 +15,7 @@ export default function MissionsSection() {
           muted 
           loop 
           playsInline 
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
           <source src="/nordeste.mp4" type="video/mp4" />
@@ -25,6 +26,7 @@ export default function MissionsSection() {
           muted 
           loop 
           playsInline 
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
         >
           <source src="/br.mp4" type="video/mp4" />

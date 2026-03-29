@@ -7,9 +7,10 @@ import styles from './AudioControl.module.css';
 interface AudioControlProps {
   isPlaying: boolean;
   onToggle: () => void;
+  isVisible?: boolean;
 }
 
-export default function AudioControl({ isPlaying, onToggle }: AudioControlProps) {
+export default function AudioControl({ isPlaying, onToggle, isVisible = true }: AudioControlProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function AudioControl({ isPlaying, onToggle }: AudioControlProps)
 
   return (
     <button 
-      className={styles.audioToggle} 
+      className={`${styles.audioToggle} ${!isVisible ? styles.hidden : ''}`} 
       onClick={onToggle}
       aria-label={isPlaying ? 'Pausar música' : 'Tocar música'}
     >
