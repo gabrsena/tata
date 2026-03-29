@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
-const SocialLinks = dynamic(() => import('@/components/SocialLinks/SocialLinks'), { ssr: true });
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import Intro from '@/components/Intro/Intro';
 import AudioControl from '@/components/AudioControl/AudioControl';
 const MissionsSection = dynamic(() => import('@/components/Missions/MissionsSection'), { ssr: true });
@@ -89,35 +89,30 @@ export default function Home() {
     if (introComplete) {
       // Pequeno delay para garantir que o DOM renderizou após o Intro sumir
       const timeout = setTimeout(() => {
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        revealElements.forEach((el) => {
-          gsap.fromTo(el,
-            { 
-              opacity: 0, 
-              y: 50,
-              visibility: 'hidden'
-            },
-            {
-              opacity: 1,
-              y: 0,
-              visibility: 'visible',
-              duration: 1.2,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
+        const ctx = gsap.context(() => {
+          const revealElements = document.querySelectorAll('.reveal');
+          revealElements.forEach((el) => {
+            gsap.fromTo(el,
+              { opacity: 0, y: 50, visibility: 'hidden' },
+              {
+                opacity: 1,
+                y: 0,
+                visibility: 'visible',
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top 85%',
+                  toggleActions: 'play none none none',
+                }
               }
-            }
-          );
+            );
+          });
         });
+        return () => ctx.revert();
       }, 100);
 
-      return () => {
-        clearTimeout(timeout);
-        ScrollTrigger.getAll().forEach(t => t.kill());
-      };
+      return () => clearTimeout(timeout);
     }
   }, [introComplete]);
 

@@ -11,15 +11,10 @@ export default function Intro({ onComplete }: { onComplete: () => void }) {
   // List of 10 fonts for the dynamic effect
   const fonts = [
     'var(--font-inter)',
-    'var(--font-outfit)',
     'var(--font-playfair)',
-    'var(--font-montserrat)',
-    'var(--font-space)',
     'var(--font-bebas)',
     'var(--font-caveat)',
-    'var(--font-prata)',
-    'var(--font-courier)',
-    'var(--font-crimson)' // Final font
+    'var(--font-prata)'
   ];
 
   useEffect(() => {
@@ -36,11 +31,11 @@ export default function Intro({ onComplete }: { onComplete: () => void }) {
       }
     });
 
-    // Font switching: 10 fonts in 1s total
+    // Font switching: 5 fonts in 1s total (0.2s each to reduce reflow)
     fonts.forEach((font, i) => {
       tl.to(textRef.current, {
         fontFamily: font,
-        duration: 0.1,
+        duration: 0.2,
         ease: 'none'
       });
     });
@@ -48,9 +43,9 @@ export default function Intro({ onComplete }: { onComplete: () => void }) {
   }, [onComplete]);
 
   return (
-    <div className={styles.introContainer} ref={containerRef}>
+    <div className={`${styles.introContainer} crit-intro`} ref={containerRef}>
       <div className={styles.glow} />
-      <h1 className={styles.phrase} ref={textRef}>
+      <h1 className={`${styles.phrase} crit-text`} ref={textRef}>
         stick to the plan
       </h1>
     </div>
