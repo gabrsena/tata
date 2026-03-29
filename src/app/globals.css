@@ -112,6 +112,7 @@ body {
   opacity: 0;
   transform: translateY(30px);
   visibility: hidden;
+  will-change: transform, opacity;
 }
 
 /* --- Neon Glow Utility --- */

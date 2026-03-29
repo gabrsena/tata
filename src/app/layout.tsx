@@ -46,9 +46,6 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${outfit.variable} ${inter.variable} ${crimson.variable} ${playfair.variable} ${montserrat.variable} ${spaceGrotesk.variable} ${bebas.variable} ${caveat.variable} ${prata.variable} ${courier.variable} ${cormorant.variable} ${inconsolata.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body>{children}</body>
     </html>
