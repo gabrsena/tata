@@ -1,49 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-cormorant), serif;
+  --font-mono: var(--font-inconsolata), monospace;
+  --color-mission-bg: #1A1208;
+  --color-mission-gold: #C9A96E;
+  --color-mission-text: #B8A898;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary: #2d2d2d; 
+  --accent: #d4cfc1;
+  --foreground: #2d2d2d;
+  --background: #E8E2D4; /* Cream color */
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --font-heading: var(--font-outfit), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-crimson: var(--font-crimson), serif;
+  --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Cloud Effect --- */
+.clouds-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.clouds-intense {
+  opacity: 1 !important;
+  z-index: 1 !important;
+}
+
+.cloud {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 50%, transparent 80%);
+  filter: blur(60px);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+.cloud-1 { width: 400px; height: 300px; top: 10%; left: -20%; animation-duration: 60s; }
+.cloud-2 { width: 500px; height: 400px; top: 60%; right: -25%; animation-duration: 80s; animation-direction: reverse; }
+.cloud-3 { width: 350px; height: 250px; top: 40%; left: 30%; animation-duration: 70s; opacity: 0.5; }
+.cloud-4 { width: 600px; height: 400px; top: 20%; left: 60%; animation-duration: 90s; opacity: 0.3; }
+.cloud-5 { width: 300px; height: 200px; top: 80%; left: 10%; animation-duration: 50s; opacity: 0.6; }
+.cloud-6 { width: 450px; height: 350px; top: 5%; left: 15%; animation-duration: 75s; opacity: 0.4; }
+.cloud-7 { width: 550px; height: 450px; top: 50%; left: 50%; animation-duration: 85s; opacity: 0.2; }
+.cloud-8 { width: 400px; height: 300px; top: 30%; left: 80%; animation-duration: 65s; opacity: 0.5; }
+
+@keyframes float {
+  from { transform: translateX(-100%) translateY(0); }
+  to { transform: translateX(100vw) translateY(50px); }
+}
+
+/* Typography Reveal */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Minimalist Glass */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+
+/* --- Premium Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1208; /* Dark track to contrast with everything */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E8E2D4; /* Cream thumb */
+  border-radius: 5px;
+  border: 2px solid #1A1208;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A96E; /* Gold on hover */
+}
+
+/* --- Neon Glow Utility --- */
+.neon-text {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+               0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.neon-border {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+              0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

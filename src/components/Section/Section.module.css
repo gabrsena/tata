@@ -1,0 +1,44 @@
+.section {
+  padding: 8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+}
+
+.dark {
+  background: #dfd8c8; /* Slightly darker cream for alternate sections */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin-bottom: 4.5rem;
+  text-align: center;
+  color: #2d2d2d;
+  font-weight: 300; /* Delicada */
+}
+
+.content {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 6rem 0;
+  }
+}

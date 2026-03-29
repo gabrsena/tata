@@ -1,0 +1,31 @@
+.audioToggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(45, 45, 45, 0.15); /* Darker translucent base */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232, 226, 212, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  color: #FFFFFF; /* Neon White icon */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+              0 0 20px rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+}
+
+.audioToggle:hover {
+  transform: scale(1.1);
+  background: rgba(45, 45, 45, 0.3);
+  border-color: rgba(232, 226, 212, 0.5);
+}
+
+.line {
+  display: none; /* Can be used for animation later if needed */
+}

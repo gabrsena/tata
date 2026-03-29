@@ -1,0 +1,135 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.socialBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  width: 100%;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  animation: glow-pulse 3s infinite ease-in-out;
+}
+
+.socialBtn:hover {
+  transform: translateY(-8px);
+  border-color: #fff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+  100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+}
+
+.btnVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.15; /* Sutil video background */
+  filter: grayscale(1);
+  transition: opacity 0.4s ease;
+}
+
+.socialBtn:hover .btnVideo {
+  opacity: 0.35;
+  filter: none;
+}
+
+.btnOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 2;
+  transition: background 0.4s ease;
+}
+
+.socialBtn:hover .btnOverlay {
+  background: rgba(232, 226, 212, 0.1);
+}
+
+.btnContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 1.5rem;
+  color: #ffffff !important; 
+  text-transform: lowercase;
+  letter-spacing: 0px;
+  font-size: 1.15rem;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important;
+}
+
+.icon {
+  position: absolute;
+  left: 2rem;
+  opacity: 1 !important;
+  display: flex;
+  align-items: center;
+  color: #ffffff !important;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) !important;
+}
+
+.label {
+  letter-spacing: 1px;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  text-align: center;
+  flex: 1;
+}
+
+.comingSoon {
+  opacity: 0.85;
+}
+
+.comingSoonBadge {
+  position: absolute;
+  right: 1.5rem;
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  color: #C9A96E;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .socialBtn {
+    height: 75px;
+  }
+  .comingSoonBadge {
+    font-size: 0.55rem;
+    padding: 1px 6px;
+  }
+}
