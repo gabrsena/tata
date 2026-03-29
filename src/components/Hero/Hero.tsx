@@ -46,6 +46,7 @@ export default function Hero({ children }: HeroProps) {
           playsInline 
           className={styles.video}
         >
+          <source src="/background.webm" type="video/webm" />
           <source src="/background.mov" type="video/quicktime" />
           <source src="/background.mov" type="video/mp4" />
         </video>

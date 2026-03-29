@@ -136,6 +136,7 @@ export default function Home() {
               autoPlay muted loop playsInline
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
             >
+              <source src="/garden.webm" type="video/webm" />
               <source src="/garden.mov" type="video/quicktime" />
               <source src="/garden.mov" type="video/mp4" />
             </video>
@@ -182,6 +183,7 @@ export default function Home() {
                     onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
                     onEnded={() => { setVideoPlaying(false); fadeAudio(0.4); }}
                   >
+                    <source src="/sobre.webm" type="video/webm" />
                     <source src="/sobre.MOV" type="video/quicktime" />
                     <source src="/sobre.MOV" type="video/mp4" />
                   </video>
@@ -208,9 +210,9 @@ export default function Home() {
               preload="none"
               className={styles.footerVideo}
             >
+              <source src="/cloud.webm" type="video/webm" />
               <source src="/cloud.mov" type="video/quicktime" />
               <source src="/cloud.mov" type="video/mp4" />
-              <source src="/cloud.mov" />
             </video>
             <div className={styles.footerOverlay} />
           </div>

@@ -26,6 +26,11 @@ export default function SocialBtn({ href, label, videoSrc, icon, isComingSoon }:
     }
   };
 
+  // Helper to get webm version
+  const getWebmSrc = (src: string) => {
+    return src.replace(/\.(mov|MOV|mp4|MP4)$/, '.webm');
+  };
+
   return (
     <a 
       href={isComingSoon ? undefined : href} 
@@ -43,6 +48,7 @@ export default function SocialBtn({ href, label, videoSrc, icon, isComingSoon }:
         playsInline 
         className={styles.btnVideo}
       >
+        <source src={getWebmSrc(videoSrc)} type="video/webm" />
         <source src={videoSrc} type="video/quicktime" />
         <source src={videoSrc} type="video/mp4" />
       </video>
