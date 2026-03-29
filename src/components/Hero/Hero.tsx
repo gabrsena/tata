@@ -23,8 +23,7 @@ export default function Hero({ children }: HeroProps) {
       // 1. Phrase slides up and fades in (first element to appear)
       tl.fromTo(subtitleRef.current,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0 },
-        '+=0.3' // Small pause after intro fade
+        { opacity: 1, y: 0 }
       )
       // 2. Background Video Fades in
       .to(videoLayerRef.current, { opacity: 1, duration: 2 }, '-=0.5')

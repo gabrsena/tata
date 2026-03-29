@@ -49,18 +49,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <style dangerouslySetInnerHTML={{ __html: `
-          body { background-color: #000000; margin: 0; }
-          .crit-intro {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000000; display: flex; align-items: center; justify-content: center;
-            z-index: 9999;
-          }
-          .crit-text {
-            color: #E8E2D4; font-size: clamp(2rem, 8vw, 6rem);
-            font-family: sans-serif; text-transform: lowercase; letter-spacing: -2px;
-          }
-        `}} />
       </head>
       <body>{children}</body>
     </html>
