@@ -80,7 +80,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 1.5rem;
+  padding: 0 3.5rem; /* Increased padding to prevent overlap with absolute icon */
   color: #ffffff !important; 
   text-transform: lowercase;
   letter-spacing: 0px;
@@ -128,8 +128,16 @@
   .socialBtn {
     height: 75px;
   }
+  .btnContent {
+    font-size: 1rem; /* Slightly smaller font for mobile */
+    padding: 0 2.5rem; /* Adjusted padding for very small screens */
+  }
+  .icon {
+    left: 1.25rem; /* Closer to edge on mobile */
+  }
   .comingSoonBadge {
     font-size: 0.55rem;
     padding: 1px 6px;
+    right: 1rem;
   }
 }
