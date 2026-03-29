@@ -94,74 +94,80 @@ export default function Home() {
             <SocialLinks />
           </Hero>
 
-          <Section id="sobre" title="Sobre Mim">
-            {/* Background Videos */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className="absolute inset-0 w-full h-full object-cover opacity-60"
-              >
-                <source src="/garden.mov" type="video/quicktime" />
-                <source src="/garden.mov" type="video/mp4" />
-              </video>
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
-              >
-                <source src="/particles.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-b from-[#E8E2D4] via-transparent to-[#E8E2D4] opacity-80" />
-              {/* Grain Overlay */}
-              <div className={styles.grainOverlay} />
-            </div>
-
-            <div className={`${styles.contentGrid} relative z-10`}>
-              <div className={styles.textStack}>
-                <p>
-                  Oi, eu sou a Tata. Tenho 28 anos e, acima de tudo, sou apaixonada por Jesus.
-                </p>
-                <p>
-                  Atualmente, vivo missões em tempo integral pela Dunamis School of Ministry, mas o meu coração não sossega aqui. Por isso te convido a acompanhar o inicio desssa minha jornada como missionaria e tambem fazer parte dela, curtindo, comentando, compartilhando mas principalmente orando por mim. Deus te abencoe.
-                </p>
+          <section id="sobre" className="w-full bg-[#E8E2D4] py-[60px] px-[48px] relative overflow-hidden">
+            {/* Background Grain Overlay from previous version */}
+            <div className={styles.grainOverlay} />
+            
+            <div className="max-w-[900px] mx-auto relative z-10">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-4 mb-12">
+                <span className="text-xs tracking-[0.2em] uppercase text-stone-400 font-sans">Sobre Mim</span>
+                <div className="flex-1 h-px bg-stone-300" />
               </div>
-              <div className={styles.mediaContainer}>
-                <div className={styles.videoWrapper} onClick={toggleVideo}>
-                  <video 
-                    ref={videoRef}
-                    playsInline 
-                    className={styles.aboutVideo}
-                    onPlay={() => {
-                      setVideoPlaying(true);
-                      fadeAudio(0.05);
-                    }}
-                    onPause={() => {
-                      setVideoPlaying(false);
-                      fadeAudio(0.4);
-                    }}
-                    onEnded={() => {
-                      setVideoPlaying(false);
-                      fadeAudio(0.4);
-                    }}
-                  >
-                    <source src="/sobre.MOV" type="video/quicktime" />
-                    <source src="/sobre.MOV" type="video/mp4" />
-                  </video>
+
+              {/* Main Content Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[64px] items-start">
+                {/* Left Column - Text */}
+                <div className="flex flex-col">
+                  <h2 className="font-serif text-5xl font-normal italic leading-tight text-stone-900 mb-8">
+                    Apaixonada por Jesus.
+                  </h2>
+                  <div className="space-y-5">
+                    <p className="font-sans text-sm leading-relaxed text-stone-500">
+                      Oi, eu sou a Tata. Tenho 28 anos e, acima de tudo, sou apaixonada por Jesus.
+                    </p>
+                    <p className="font-sans text-sm leading-relaxed text-stone-500">
+                      Atualmente, vivo missões em tempo integral pela Dunamis School of Ministry, mas o meu coração não sossega aqui. Por isso te convido a acompanhar o inicio dessa minha jornada como missionaria e tambem fazer parte dela.
+                    </p>
+                    <blockquote className="border-l-2 border-yellow-600 pl-5 mt-0">
+                      <p className="font-serif italic text-sm leading-relaxed text-stone-400">
+                        "Curtindo, comentando, compartilhando — mas principalmente orando por mim. Deus te abençoe."
+                      </p>
+                    </blockquote>
+                  </div>
+                </div>
+
+                {/* Right Column - Video */}
+                <div className="relative">
+                  {/* Decorative Golden Border Square */}
+                  <div className="absolute bottom-[-16px] right-[-16px] w-20 h-20 border border-yellow-600 rounded-none z-0" />
                   
-                  {!videoPlaying && (
-                    <div className={styles.playOverlay}>
-                      <FaPlay size={30} />
-                    </div>
-                  )}
+                  {/* Video Wrapper */}
+                  <div 
+                    className="relative z-10 rounded-sm overflow-hidden aspect-[4/5] bg-[#f0ebe0] cursor-pointer shadow-xl"
+                    onClick={toggleVideo}
+                  >
+                    <video 
+                      ref={videoRef}
+                      playsInline 
+                      className="w-full h-full object-cover block"
+                      onPlay={() => {
+                        setVideoPlaying(true);
+                        fadeAudio(0.05);
+                      }}
+                      onPause={() => {
+                        setVideoPlaying(false);
+                        fadeAudio(0.4);
+                      }}
+                      onEnded={() => {
+                        setVideoPlaying(false);
+                        fadeAudio(0.4);
+                      }}
+                    >
+                      <source src="/sobre.MOV" type="video/quicktime" />
+                      <source src="/sobre.MOV" type="video/mp4" />
+                    </video>
+                    
+                    {!videoPlaying && (
+                      <div className={styles.playOverlay}>
+                        <FaPlay size={30} />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </Section>
+          </section>
 
           <MissionsSection />
 
