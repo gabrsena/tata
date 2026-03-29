@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
-import SocialLinks from '@/components/SocialLinks/SocialLinks';
+const SocialLinks = dynamic(() => import('@/components/SocialLinks/SocialLinks'), { ssr: true });
 import Intro from '@/components/Intro/Intro';
 import AudioControl from '@/components/AudioControl/AudioControl';
-import MissionsSection from '@/components/Missions/MissionsSection';
+const MissionsSection = dynamic(() => import('@/components/Missions/MissionsSection'), { ssr: true });
 import { FaPlay } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

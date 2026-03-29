@@ -6,18 +6,18 @@ import {
 } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"] });
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const crimson = Crimson_Pro({ variable: "--font-crimson", subsets: ["latin"], weight: ["400"] });
-const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] });
-const montserrat = Montserrat({ variable: "--font-montserrat", subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({ variable: "--font-space", subsets: ["latin"] });
-const bebas = Bebas_Neue({ variable: "--font-bebas", subsets: ["latin"], weight: ["400"] });
-const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"] });
-const prata = Prata({ variable: "--font-prata", subsets: ["latin"], weight: ["400"] });
-const courier = Courier_Prime({ variable: "--font-courier", subsets: ["latin"], weight: ["400"] });
-const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["300", "400"] });
-const inconsolata = Inconsolata({ variable: "--font-inconsolata", subsets: ["latin"], weight: ["300", "400"] });
+const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], display: 'swap' });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: 'swap' });
+const crimson = Crimson_Pro({ variable: "--font-crimson", subsets: ["latin"], weight: ["400"], display: 'swap' });
+const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"], display: 'swap' });
+const montserrat = Montserrat({ variable: "--font-montserrat", subsets: ["latin"], display: 'swap' });
+const spaceGrotesk = Space_Grotesk({ variable: "--font-space", subsets: ["latin"], display: 'swap' });
+const bebas = Bebas_Neue({ variable: "--font-bebas", subsets: ["latin"], weight: ["400"], display: 'swap' });
+const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], display: 'swap' });
+const prata = Prata({ variable: "--font-prata", subsets: ["latin"], weight: ["400"], display: 'swap' });
+const courier = Courier_Prime({ variable: "--font-courier", subsets: ["latin"], weight: ["400"], display: 'swap' });
+const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["300", "400"], display: 'swap' });
+const inconsolata = Inconsolata({ variable: "--font-inconsolata", subsets: ["latin"], weight: ["300", "400"], display: 'swap' });
 
 export const metadata: Metadata = {
   title: "stick to the plan.",
@@ -45,6 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className={`${outfit.variable} ${inter.variable} ${crimson.variable} ${playfair.variable} ${montserrat.variable} ${spaceGrotesk.variable} ${bebas.variable} ${caveat.variable} ${prata.variable} ${courier.variable} ${cormorant.variable} ${inconsolata.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      </head>
       <body>{children}</body>
     </html>
   );
