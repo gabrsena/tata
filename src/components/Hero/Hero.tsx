@@ -20,19 +20,18 @@ export default function Hero({ children }: HeroProps) {
         defaults: { ease: 'power3.out', duration: 1.5 } 
       });
 
-      // 1. Phrase slides up and fades in (first element to appear)
-      tl.fromTo(subtitleRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0 }
-      )
+      // 1. Phrase slides up and fades in (starts visible in DOM for LCP)
+      tl.from(subtitleRef.current, { 
+        opacity: 0, 
+        y: 30 
+      })
       // 2. Background Video Layers Fade in to full vibrancy
       .to(videoLayerRef.current, { opacity: 1, duration: 1 })
       // 3. Actions (buttons) slide up and fade in
-      .fromTo(actionsRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0 },
-        '-=1.2'
-      );
+      .from(actionsRef.current, { 
+        opacity: 0, 
+        y: 20 
+      }, '-=1.2');
     }
   }, []);
 
@@ -49,6 +48,9 @@ export default function Hero({ children }: HeroProps) {
           height={1080}
           className={styles.video}
           style={{ objectFit: 'cover' }}
+          // @ts-ignore
+          fetchpriority="high"
+          preload="none"
         >
           <source src="/background.mp4" type="video/mp4" />
           <source src="/background.mov" type="video/quicktime" />
@@ -61,11 +63,11 @@ export default function Hero({ children }: HeroProps) {
       </div>
 
       <div className={styles.content}>
-        <p ref={subtitleRef} className={styles.subtitle} style={{ opacity: 0 }}>
+        <p ref={subtitleRef} className={styles.subtitle}>
           Criando com intencionalidade e propósito.<br/>
           Tudo para a honra e glória de Deus.
         </p>
-        <div ref={actionsRef} className={styles.actions} style={{ opacity: 0 }}>
+        <div ref={actionsRef} className={styles.actions}>
           {children}
         </div>
       </div>
