@@ -1,34 +1,16 @@
-'use client';
-
-import { FaPlay } from 'react-icons/fa';
+import AboutVideo from './AboutVideo';
 import styles from '@/app/page.module.css';
 
-interface AboutSectionProps {
-  aboutSectionRef: React.RefObject<HTMLElement | null>;
-  videoRef: React.RefObject<HTMLVideoElement | null>;
-  videoPlaying: boolean;
-  toggleVideo: () => void;
-  fadeAudio: (vol: number) => void;
-  setVideoPlaying: (playing: boolean) => void;
-}
-
-export default function AboutSection({
-  aboutSectionRef,
-  videoRef,
-  videoPlaying,
-  toggleVideo,
-  fadeAudio,
-  setVideoPlaying
-}: AboutSectionProps) {
+export default function AboutSection() {
   return (
-    <section id="sobre" ref={aboutSectionRef} className={styles.sobreSection}>
+    <section id="sobre" className={styles.sobreSection}>
       {/* Background atmosphere */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', background: '#E8E2D4' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(215, 198, 168, 0.2) 50%, transparent 100%)' }} />
         <div className={styles.grainOverlay} />
       </div>
 
-      <div className={`${styles.sobreContainer} reveal`}>
+      <div className={styles.sobreContainer}>
         {/* Eyebrow */}
         <div className={styles.sobreEyebrow}>
           <span className={styles.sobreEyebrowLabel}>Sobre Mim</span>
@@ -37,7 +19,7 @@ export default function AboutSection({
 
         {/* Grid */}
         <div className={styles.sobreGrid}>
-          {/* Texto */}
+          {/* Texto - Visibilidade Imediata */}
           <div className={styles.sobreTextColumn}>
             <h2 className={styles.sobreTitle}>
               Apaixonada por Jesus.
@@ -55,31 +37,8 @@ export default function AboutSection({
             </blockquote>
           </div>
 
-          {/* Vídeo */}
-          <div className={styles.sobreVideoColumn}>
-            <div className={styles.sobreVideoDecor} />
-            <div className={styles.sobreVideoWrapper} onClick={toggleVideo}>
-                <video
-                  ref={videoRef}
-                  loop
-                  playsInline
-                  preload="none"
-                className={styles.sobreVideo}
-                onPlay={() => { setVideoPlaying(true); fadeAudio(0.05); }}
-                onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
-                onEnded={() => { setVideoPlaying(false); fadeAudio(0.4); }}
-              >
-                <source src="/sobre.webm" type="video/webm" />
-                <source src="/sobre.MOV" type="video/quicktime" />
-                <source src="/sobre.MOV" type="video/mp4" />
-              </video>
-              {!videoPlaying && (
-                <div className={styles.sobrePlayOverlay}>
-                  <FaPlay size={30} />
-                </div>
-              )}
-            </div>
-          </div>
+          {/* Vídeo - Componente Cliente Isolado */}
+          <AboutVideo />
         </div>
       </div>
     </section>
