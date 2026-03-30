@@ -12,9 +12,7 @@
   --primary: #2d2d2d; 
   --accent: #d4cfc1;
   --foreground: #2d2d2d;
-  --background: #E8E2D4; /* Cream color */
-  --glass-bg: rgba(255, 255, 255, 0.3);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  --bebas-font: var(--font-bebas), sans-serif;
   --font-heading: var(--font-outfit), sans-serif;
   --font-body: var(--font-inter), sans-serif;
   --font-crimson: var(--font-crimson), serif;
@@ -120,6 +118,29 @@ body {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
                0 0 10px rgba(255, 255, 255, 0.5),
                0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.neonWhite {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+               0 0 15px rgba(255, 255, 255, 0.4),
+               0 0 25px rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+  
+  /* Neon Light Swipe Effect from Hero */
+  background: linear-gradient(
+    90deg, 
+    #FFFFFF 0%, 
+    #FFFFFF 45%, 
+    #E8E2D4 50%, 
+    #FFFFFF 55%, 
+    #FFFFFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
 }
 
 .neon-border {

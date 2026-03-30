@@ -16,10 +16,10 @@
 }
 
 .scrolled {
-  background: rgba(232, 226, 212, 0.5); /* Higher translucency */
-  backdrop-filter: blur(25px); /* Increased blur for glass effect */
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(26, 18, 8, 0.08);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  padding: 1.2rem 0;
+  border-bottom: none !important;
 }
 
 .container {
@@ -39,6 +39,14 @@
   display: flex;
   gap: 3rem;
   align-items: center;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hiddenLinks {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-10px);
 }
 
 .desktopLinks a {
@@ -51,16 +59,47 @@
 }
 
 .lightLink {
-  color: #FFFFFF; /* Pure White for Neon Base */
+  color: #FFFFFF;
   opacity: 1;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.9),
-               0 0 10px rgba(255, 255, 255, 0.6),
-               0 0 20px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+               0 0 15px rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  /* Syncing with Hero shine */
+  background: linear-gradient(
+    90deg, 
+    #FFFFFF 0%, 
+    #FFFFFF 45%, 
+    #E8E2D4 50%, 
+    #FFFFFF 55%, 
+    #FFFFFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
 }
 
 .darkLink {
-  color: #1A1208 !important;
-  opacity: 0.95;
+  color: #FFFFFF !important;
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+               0 0 15px rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  /* Syncing with Hero shine */
+  background: linear-gradient(
+    90deg, 
+    #FFFFFF 0%, 
+    #FFFFFF 45%, 
+    #E8E2D4 50%, 
+    #FFFFFF 55%, 
+    #FFFFFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
 }
 
 .desktopLinks a:hover {
@@ -178,16 +217,17 @@
     display: block;
     padding: 0.5rem;
     border-radius: 50%;
-    /* Optional: add a very subtle background to the button itself if needed for contrast */
-    /* background: rgba(0, 0, 0, 0.05); */
   }
 
   .transparent .menuButton {
     color: #FFFFFF;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.4);
   }
 
   .scrolled .menuButton {
-    color: #1A1208;
+    color: #FFFFFF;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.4);
   }
 }

@@ -20,7 +20,7 @@ export default function Home() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const aboutRef = useRef<HTMLElement>(null);
+  const aboutSectionRef = useRef<HTMLElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,6 +34,25 @@ export default function Home() {
         audioRef.current.pause();
         audioRef.current = null;
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef.current?.play();
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutSectionRef.current) observer.observe(aboutSectionRef.current);
+    
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -126,7 +145,7 @@ export default function Home() {
           <SocialLinks />
         </Hero>
 
-        <section id="sobre" className={styles.sobreSection}>
+        <section id="sobre" ref={aboutSectionRef} className={styles.sobreSection}>
           {/* Background atmosphere */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', background: '#E8E2D4' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(215, 198, 168, 0.2) 50%, transparent 100%)' }} />
@@ -164,10 +183,11 @@ export default function Home() {
               <div className={styles.sobreVideoColumn}>
                 <div className={styles.sobreVideoDecor} />
                 <div className={styles.sobreVideoWrapper} onClick={toggleVideo}>
-                  <video
-                    ref={videoRef}
-                    playsInline
-                    preload="none"
+                    <video
+                      ref={videoRef}
+                      loop
+                      playsInline
+                      preload="none"
                     className={styles.sobreVideo}
                     onPlay={() => { setVideoPlaying(true); fadeAudio(0.05); }}
                     onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
@@ -192,13 +212,11 @@ export default function Home() {
 
         <footer className={styles.footer} ref={footerRef} style={{ background: '#E8E2D4', padding: '6rem 0' }}>
           <div className={`${styles.footerContent} reveal`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
-            <h2 style={{ 
+            <h2 className="neonWhite" style={{ 
               fontFamily: 'var(--font-bebas)', 
-              fontSize: '1.5rem', 
-              color: '#333', 
-              letterSpacing: '0.2em',
+              fontSize: '1rem', 
+              letterSpacing: '0.5em',
               textAlign: 'center',
-              opacity: 0.7,
               textTransform: 'uppercase'
             }}>
               stick to the plan

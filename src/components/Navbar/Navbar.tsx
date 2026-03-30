@@ -23,12 +23,12 @@ export default function Navbar() {
         <div className={styles.container}>
           <div className={styles.spacer} /> {/* Espaçador no lugar do logo */}
           
-          <div className={styles.desktopLinks}>
+          <div className={`${styles.desktopLinks} ${scrolled ? styles.hiddenLinks : ''}`}>
             <Link href="#sobre" className={scrolled ? styles.darkLink : styles.lightLink}>SOBRE MIM</Link>
             <Link href="#missao-v4" className={`${styles.btnLink} ${scrolled ? styles.darkLink : styles.lightLink}`}>MISSÕES</Link>
           </div>
 
-          <button className={styles.menuButton} onClick={toggleMenu} aria-label="Toggle Menu">
+          <button className={`${styles.menuButton} ${scrolled ? styles.hiddenLinks : ''}`} onClick={toggleMenu} aria-label="Toggle Menu">
             {isMenuOpen ? <RiCloseLine size={28} /> : <RiMenu3Line size={28} />}
           </button>
         </div>

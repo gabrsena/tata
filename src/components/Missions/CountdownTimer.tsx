@@ -34,18 +34,18 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
 
   const TimeCard = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center p-3 sm:p-4 border border-[rgba(201,169,110,0.3)] rounded-lg bg-mission-bg/50 backdrop-blur-sm min-w-[70px] sm:min-w-[90px]">
-      <span className="font-mono text-2xl sm:text-3xl text-mission-gold">
+    <div className="flex flex-col items-center px-5 py-4 bg-white/60 border border-[#C9A84C]/30 rounded-2xl min-w-[72px] text-center shadow-sm text-[#1a1a1a]">
+      <span className="font-mono text-3xl font-bold">
         {value.toString().padStart(2, '0')}
       </span>
-      <span className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-widest text-[#B8A898] mt-1">
+      <span className="text-xs uppercase tracking-widest text-[#C9A84C] mt-1 font-mono">
         {label}
       </span>
     </div>
   );
 
   return (
-    <div className="flex gap-2 sm:gap-4 justify-center sm:justify-start">
+    <div className="flex flex-wrap gap-4 justify-center">
       <TimeCard value={timeLeft.days} label="Dias" />
       <TimeCard value={timeLeft.hours} label="Horas" />
       <TimeCard value={timeLeft.minutes} label="Min" />
