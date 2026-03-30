@@ -67,18 +67,23 @@ export default function MissionsSection() {
               Eu e mais 10 mulheres de Deus estaremos juntas nessa. Aprendi que, se dói no coração de Cristo ver que ainda existem pessoas não alcançadas, essa dor também precisa ser a minha.
             </p>
 
-            {/* Support Button (Refined Design) */}
+            {/* Support Button (Refined Luxury Design) */}
             <a 
               href="https://wa.me/5515998618920" 
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-4 mt-12 px-12 py-5 bg-[#C9A84C] text-white text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold rounded-full shadow-[0_20px_40px_-15px_rgba(201,168,76,0.5)] hover:bg-[#b8943f] hover:scale-105 hover:shadow-[0_30px_60px_-15px_rgba(201,168,76,0.6)] active:scale-95 transition-all duration-500 cursor-pointer border border-white/20 backdrop-blur-sm overflow-hidden"
+              className="group relative inline-flex items-center gap-6 mt-16 px-16 py-6 bg-[#C9A84C] text-white text-xs sm:text-sm tracking-[0.4em] uppercase font-bold rounded-full shadow-[0_30px_60px_-20px_rgba(201,168,76,0.6)] hover:bg-[#b8943f] hover:scale-[1.03] hover:shadow-[0_40px_80px_-20px_rgba(201,168,76,0.7)] active:scale-95 transition-all duration-700 cursor-pointer overflow-hidden ring-4 ring-white/10"
             >
-              <span className="relative z-10 flex items-center gap-4">
+              <span className="relative z-10 flex items-center gap-6 drop-shadow-md">
                 APOIAR ESSA MISSÃO
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-500" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              
+              {/* Luxury Gloss Sweep Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] group-hover:animate-shine transition-all duration-1000" />
+              
+              {/* Inner Glow Border */}
+              <div className="absolute inset-0 rounded-full border border-white/20 z-0" />
             </a>
           </div>
         </div>

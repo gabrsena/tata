@@ -20,7 +20,7 @@ export default function AboutVideo() {
 
   return (
     <div className={styles.sobreVideoColumn}>
-      {/* Decorative elements can retain the reveal class if desired, but here we prioritize stability */}
+      {/* Decorative elements */}
       <div className={styles.sobreVideoDecor} />
       <div className={styles.sobreVideoWrapper} onClick={toggleVideo}>
         <video
