@@ -20,9 +20,8 @@ export default function Hero({ children }: HeroProps) {
         defaults: { ease: 'power3.out', duration: 1.5 } 
       });
 
-      // 1. Phrase slides up and fades in (starts visible in DOM for LCP)
+      // 1. Phrase slides up (starts visible in DOM for LCP)
       tl.from(subtitleRef.current, { 
-        opacity: 0, 
         y: 30 
       })
       // 2. Background Video Layers Fade in to full vibrancy
@@ -43,11 +42,10 @@ export default function Hero({ children }: HeroProps) {
           muted 
           loop 
           playsInline 
-          poster="/hero.webp"
           width={1920}
           height={1080}
-          className={styles.video}
-          style={{ objectFit: 'cover' }}
+          className={`${styles.video} z-10`}
+          style={{ objectFit: 'cover', position: 'relative' }}
           // @ts-ignore
           fetchpriority="high"
           preload="none"
@@ -63,7 +61,7 @@ export default function Hero({ children }: HeroProps) {
       </div>
 
       <div className={styles.content}>
-        <p ref={subtitleRef} className={styles.subtitle}>
+        <p ref={subtitleRef} className={styles.subtitle} data-lcp="true">
           Criando com intencionalidade e propósito.<br/>
           Tudo para a honra e glória de Deus.
         </p>

@@ -46,10 +46,6 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${outfit.variable} ${inter.variable} ${crimson.variable} ${playfair.variable} ${montserrat.variable} ${spaceGrotesk.variable} ${bebas.variable} ${caveat.variable} ${prata.variable} ${courier.variable} ${cormorant.variable} ${inconsolata.variable}`}>
       <head>
-        {/* @ts-ignore */}
-        <link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
-        {/* @ts-ignore */}
-        <link rel="preload" as="image" href="/hero.jpg" fetchpriority="high" />
       </head>
       <body>{children}</body>
     </html>
