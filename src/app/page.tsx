@@ -6,7 +6,8 @@ import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import AudioControl from '@/components/AudioControl/AudioControl';
-const MissionsSection = dynamic(() => import('@/components/Missions/MissionsSection'), { ssr: true });
+const MissionsSection = dynamic(() => import('@/components/Missions/MissionsSection'), { ssr: false });
+const AboutSection = dynamic(() => import('@/components/About/AboutSection'), { ssr: false });
 import { FaPlay } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,11 +25,7 @@ export default function Home() {
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Inicializar áudio
-    audioRef.current = new Audio('/music.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0;
-
+    // Audio object is now initialized in toggleAudio only when needed (saves 24MB bandwidth)
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -68,6 +65,12 @@ export default function Home() {
 
 
   const toggleAudio = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('/music.mp3');
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0;
+    }
+
     if (audioRef.current) {
       if (isAudioPlaying) {
         gsap.to(audioRef.current, { volume: 0, duration: 1, onComplete: () => audioRef.current?.pause() });
@@ -145,68 +148,14 @@ export default function Home() {
           <SocialLinks />
         </Hero>
 
-        <section id="sobre" ref={aboutSectionRef} className={styles.sobreSection}>
-          {/* Background atmosphere */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', background: '#E8E2D4' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(215, 198, 168, 0.2) 50%, transparent 100%)' }} />
-            <div className={styles.grainOverlay} />
-          </div>
-
-          <div className={`${styles.sobreContainer} reveal`}>
-            {/* Eyebrow */}
-            <div className={styles.sobreEyebrow}>
-              <span className={styles.sobreEyebrowLabel}>Sobre Mim</span>
-              <div className={styles.sobreEyebrowLine} />
-            </div>
-
-            {/* Grid */}
-            <div className={styles.sobreGrid}>
-              {/* Texto */}
-              <div className={styles.sobreTextColumn}>
-                <h2 className={styles.sobreTitle}>
-                  Apaixonada por Jesus.
-                </h2>
-                <p className={styles.sobreParagraph}>
-                  Oi, eu sou a Tata. Tenho 28 anos e, acima de tudo, sou apaixonada por Jesus.
-                </p>
-                <p className={styles.sobreParagraph}>
-                  Atualmente, vivo missões em tempo integral pela Dunamis School of Ministry, mas o meu coração não sossega aqui. Por isso te convido a acompanhar o início dessa minha jornada como missionária e também fazer parte dela.
-                </p>
-                <blockquote className={styles.sobreVerse}>
-                  <p className={styles.sobreVerseText}>
-                    "Mas recebereis poder ao descer sobre vós o Espírito Santo; e ser-me-eis testemunhas tanto em Jerusalém como em toda a Judéia e Samaria e até aos confins da terra." Atos 1:8
-                  </p>
-                </blockquote>
-              </div>
-
-              {/* Vídeo */}
-              <div className={styles.sobreVideoColumn}>
-                <div className={styles.sobreVideoDecor} />
-                <div className={styles.sobreVideoWrapper} onClick={toggleVideo}>
-                    <video
-                      ref={videoRef}
-                      loop
-                      playsInline
-                      preload="none"
-                    className={styles.sobreVideo}
-                    onPlay={() => { setVideoPlaying(true); fadeAudio(0.05); }}
-                    onPause={() => { setVideoPlaying(false); fadeAudio(0.4); }}
-                    onEnded={() => { setVideoPlaying(false); fadeAudio(0.4); }}
-                  >
-                    <source src="/sobre.webm" type="video/webm" />
-                    <source src="/sobre.MOV" type="video/quicktime" />
-                    <source src="/sobre.MOV" type="video/mp4" />
-                  </video>
-                  {!videoPlaying && (
-                    <div className={styles.sobrePlayOverlay}>
-                      <FaPlay size={30} />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutSection 
+          aboutSectionRef={aboutSectionRef}
+          videoRef={videoRef}
+          videoPlaying={videoPlaying}
+          toggleVideo={toggleVideo}
+          fadeAudio={fadeAudio}
+          setVideoPlaying={setVideoPlaying}
+        />
 
         <MissionsSection />
 
