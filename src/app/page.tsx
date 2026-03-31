@@ -7,7 +7,7 @@ import Hero from '@/components/Hero/Hero';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import AudioControl from '@/components/AudioControl/AudioControl';
 const MissionsSection = dynamic(() => import('@/components/Missions/MissionsSection'), { ssr: false });
-import AboutSection from '@/components/About/AboutSection';
+const AboutSection = dynamic(() => import('@/components/About/AboutSection'), { ssr: false });
 import { FaPlay } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,8 +17,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const aboutSectionRef = useRef<HTMLElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +34,24 @@ export default function Home() {
     };
   }, []);
 
-  // Interaction observers for About are now handled within AboutVideo component
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef.current?.play();
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutSectionRef.current) observer.observe(aboutSectionRef.current);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +82,25 @@ export default function Home() {
     }
   };
 
-  // Video toggling is now handled internally by AboutVideo to allow Server Component text rendering
+  const fadeAudio = (targetVolume: number) => {
+    if (audioRef.current && isAudioPlaying) {
+      gsap.to(audioRef.current, { 
+        volume: targetVolume, 
+        duration: 1,
+        ease: 'power2.inOut'
+      });
+    }
+  };
+
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (videoPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+    }
+  };
 
   useEffect(() => {
     // Pequeno delay para garantir que o DOM renderizou
@@ -110,18 +148,28 @@ export default function Home() {
           <SocialLinks />
         </Hero>
 
-        <AboutSection />
+        <AboutSection 
+          aboutSectionRef={aboutSectionRef}
+          videoRef={videoRef}
+          videoPlaying={videoPlaying}
+          toggleVideo={toggleVideo}
+          fadeAudio={fadeAudio}
+          setVideoPlaying={setVideoPlaying}
+        />
 
         <MissionsSection />
 
         <footer className={styles.footer} ref={footerRef} style={{ background: '#E8E2D4', padding: '6rem 0' }}>
-          <div className={`${styles.footerContent} reveal`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
-            <h2 className="neonWhite" style={{ 
-              fontFamily: 'var(--font-bebas)', 
-              fontSize: '1rem', 
-              letterSpacing: '0.5em',
+          <div className={styles.footerContent} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+            <h2 style={{ 
+              fontFamily: 'var(--font-serif)', 
+              fontSize: '0.9rem', 
+              letterSpacing: '0.4em',
               textAlign: 'center',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
+              color: '#1a1a1a',
+              fontWeight: '300',
+              opacity: '0.7'
             }}>
               stick to the plan
             </h2>

@@ -34,21 +34,20 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
 
   const TimeCard = ({ value, label }: { value: number; label: string }) => (
-    <div className="group flex flex-col items-center px-8 py-6 bg-white/[0.03] backdrop-blur-2xl border border-white/20 rounded-[2.5rem] min-w-[100px] sm:min-w-[130px] text-center shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-700 hover:bg-white/[0.06] hover:-translate-y-3 hover:scale-105 hover:border-[#C9A84C]/50">
-      <span className="font-mono text-5xl sm:text-6xl font-extralight tracking-tighter text-[#1C1917] drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] select-none">
+    <div className="flex flex-col items-center px-4 py-3 bg-black/40 backdrop-blur-md border border-[#C9A84C]/30 rounded-lg min-w-[64px] transition-all duration-300 hover:border-[#C9A84C]/60">
+      <span className="font-mono text-xl sm:text-2xl font-bold text-white tracking-tighter">
         {value.toString().padStart(2, '0')}
       </span>
-      <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#C9A84C] mt-3 select-none">
+      <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] text-[#C9A84C]/80 mt-0.5 font-medium">
         {label}
       </span>
     </div>
   );
 
   return (
-    <div className="flex flex-wrap gap-4 sm:gap-8 justify-center items-center py-8">
+    <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
       <TimeCard value={timeLeft.days} label="Dias" />
       <TimeCard value={timeLeft.hours} label="Horas" />
-      <div className="hidden sm:block h-6 w-[1px] bg-[#C9A84C]/20 mx-[-4px]" />
       <TimeCard value={timeLeft.minutes} label="Min" />
       <TimeCard value={timeLeft.seconds} label="Seg" />
     </div>
